@@ -33,7 +33,14 @@ function gaussCompacto($ordemMatriz, $matriz, $arrayTermosInd, &$arraySolucao, &
         }
 
     }
-
+//resolvendo o sistema
+//pra se resolver o sistema, cada valor de x, do vetor solução é igual a: xi=(yi-Eajxj)/ai>>> onde E é a somatória, com j começando em i e treminando em n.
+for($i=$ordemmatriz,$i>0,$i--){
+    if ($i==$ordemMatriz){
+        $arraysolucao[$i]=$matrizAux[$i][$i+1]/$matrizAux[$i][$i];
+    }
+    $arraySolucao[$i]=($matrizAux[$i][$ordemmatriz+1]-fsomatoria2($matrizAux,$i,$arraysolucao,$ordemmatriz))/$matrizAux[$i][$i];
+}
 
     echo "dentro de gauss";
 
@@ -44,7 +51,13 @@ function fsomatoria($matrizAux,$i){
         $aux = $aux + $matrizAux[j][i] * $matrizAux[i][j];
     return ($aux);
 }
-
+//função somatoria para resolver o sistema
+function fsomatoria2($matrizAux,$i,$arraySolucao,$ordemmatriz){
+    for ($j=$i,$j<$ordemmatriz, $j++){
+        $aux= $aux+ $matrizAux[$i][$j]*$arraysolucao[$j];
+    }
+    return($aux);
+}
 
 
 
